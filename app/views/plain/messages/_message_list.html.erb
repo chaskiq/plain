@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "message-list-#{@current_page}" do %>
+  <div class="flex flex-col-reverse">
+    <% if @current_page.zero? %>
+      <span data-controller="scroll"></span>
+    <% end %>
+    <%= render partial: "plain/messages/message_item", collection: @messages, as: :message  %>
+    <% if @messages.size.positive? %>
+      <%= turbo_frame_tag "message-list-#{@next_page}", loading: :lazy,
+                          src: conversation_messages_path(@conversation, page: @next_page),
+                          class: 'empty:mt-[600px] empty:mb-[-600px] empty:block group' %>
+      <div class="mt-4 group-[&:not(:empty)]:hidden">
+        <%= t('conversations.loading') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

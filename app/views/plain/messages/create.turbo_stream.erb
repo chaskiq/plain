@@ -1,0 +1,8 @@
+<%= turbo_stream.append "new-messages-container" do %>
+  <%= render partial: "message_item", collection: @messages, as: :message, locals: { data: "asd" }  %>
+<% end %>
+
+
+<%= turbo_stream.update "message-form" do %>
+  <%= render "form", conversation: @conversation %>
+<% end %>

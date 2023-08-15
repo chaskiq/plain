@@ -1,0 +1,22 @@
+
+<%= turbo_frame_tag "message-form" do %>
+  <%= form_for Plain::Message.new, 
+    url: plain.conversation_messages_path(conversation), 
+    html: { 
+      data: { 
+        controller: "loader",
+        action: "turbo:submit-start->loader#formSubmitting turbo:submit-end->loader#formSubmitted"
+      }
+    } do |form| %>
+    <div class="absolute bottom-0 border-t pt-2 bg-white h-[52px]">
+      <div class="flex space-x-2 w-[448px] px-2">
+        <%= form.text_field :content, class: "flex-grow p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"  %>
+        
+        <div class="">
+          <%= form.submit "Ask Plain", "data-loader-target": "loader", class: "ml-4 inline-flex justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+<% end %>

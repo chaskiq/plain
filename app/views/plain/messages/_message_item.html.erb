@@ -1,0 +1,26 @@
+<div id="message-item-<%= message.id %>" 
+  class="message-role <%= message.assistant? ? "bg-white" : "bg-brand-200" %> 
+  mx-4 flex flex-col pb-1 p-2 my-1 shadow-sm rounded-md border border-black/10">
+
+  <%= "Plain bot:" if message.assistant? %>
+
+  <div class="prose prose-sm space-y-2">
+    <% unless message.content.nil? %>
+      <%= raw Plain::AiDocs.convert_markdown message.content %>
+    <% end %>
+  </div>
+
+  <div class="flex space-x-2">
+    <% if message.assistant? %>
+      <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        create doc
+      </button>
+      <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        OTHER action?
+      </button>
+    <% end %>
+  </div>
+  <% if local_assigns[:scroll] %>
+    <span data-controller="scroll"></span>
+  <% end %>
+</div>

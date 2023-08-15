@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "conversation-list-#{@current_page}" do %>
+  current: <%= @current_page %>
+  next: <%= @next_page %>
+  <div class="flex flex-col">
+    <% if @current_page.zero? %>
+      <span data-controller="scroll"></span>
+    <% end %>
+    <%= render partial: "plain/conversations/conversation_item", collection: @conversations, as: :conversation  %>
+    <% if @conversations.size.positive? %>
+      <%= turbo_frame_tag "conversation-list-#{@next_page}", loading: :lazy,
+                          src: conversations_path(page: @next_page),
+                          class: 'empty:mt-[600px] empty:mb-[-600px] empty:block group' %>
+      <div class="mt-4 group-[&:not(:empty)]:hidden">
+        <%= t('conversations.loading') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

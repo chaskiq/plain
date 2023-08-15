@@ -1,0 +1,73 @@
+  <div class="relative z-10"
+    id="ai-assistant" 
+    data-controller="toggle-class"
+    aria-labelledby="slide-over-title" 
+    role="dialog" 
+    aria-modal="true">
+    <!-- Background backdrop, show/hide based on slide-over state. -->
+    <div class="fixed inset-0"></div>
+
+    <div class="fixed inset-0 overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+          <!--
+            Slide-over panel, show/hide based on slide-over state.
+
+            Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+              From: "translate-x-full"
+              To: "translate-x-0"
+            Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+              From: "translate-x-0"
+              To: "translate-x-full"
+          -->
+          <div class="pointer-events-auto w-screen max-w-md">
+            <div class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+             
+
+              <div class="h-0 flex-1 overflow-y-auto bg-black/5">
+                <div class="bg-brand-700 px-4 py-6 sm:px-6">
+                  <div class="flex items-center justify-between">
+                    
+                    <% if @conversation.present? || @needs_back  %>
+                      <%= link_to plain.root_path, class: "p-4 rounded-md hover:bg-black/10" do %>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                        </svg>
+                      <% end %>
+                    <% end %>
+
+                    <h2 class="text-base font-semibold leading-6 text-white" id="slide-over-title">
+                      PLAIN AI ASSISTANT
+                    </h2>
+
+                    <div class="ml-3 flex h-7 items-center">
+                      <button type="button"
+                        data-action="toggle-class#toggle"
+                        class="rounded-md bg-brand-700 text-brand-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <span class="sr-only">Close panel</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mt-1 hidden">
+                    <p class="text-sm text-brand-300">
+                      Get started by filling in the information below to create your new project.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex flex-1 flex-col justify-between">
+                  <div class="divide-y divide-gray-200">
+                    <div class="space-y-6-- py-6--">
+                      <%= yield %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

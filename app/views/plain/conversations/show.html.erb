@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "plain" do %>
+  <%= render "modal" do %>
+    <%= turbo_stream_from(@conversation) %>
+    <div class="h-[calc(100vh-155px)] overflow-y-scroll">
+      <%= turbo_frame_tag "message-list-0", loading: :lazy,
+                          src: plain.conversation_messages_path(@conversation, page: 0),
+                          class: 'empty:block group' %>
+      <div id="new-messages-container"></div>
+    </div>
+    <div class="bg-red-600">
+      <%= render "plain/messages/form", conversation: @conversation %>
+    </div>
+  <% end %>
+<% end %>

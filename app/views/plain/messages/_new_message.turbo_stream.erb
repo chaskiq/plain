@@ -1,0 +1,3 @@
+<%= turbo_stream.append "new-messages-container" do %>
+  <%= render "plain/messages/message_item", message: message, scroll: true %>
+<% end %>

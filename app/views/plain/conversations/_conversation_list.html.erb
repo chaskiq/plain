@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "conversation-list-#{@current_page}" do %>
+  <div class="divide divide-y">
+    <%= render partial: "plain/conversations/conversation_item", collection: @conversations, as: :conversation  %>
+  </div>
+  <% if @conversations.size.positive? %>
+    <%= turbo_frame_tag "conversation-list-#{@next_page}", loading: :lazy,
+                        src: conversations_path(page: @next_page),
+                        class: 'empty:mt-[-300px] empty:mb-[300px] empty:block group' %>
+    <div class="mt-4 group-[&:not(:empty)]:hidden">
+      <%= t('conversations.loading') %>
+    </div>
+  <% end %>
+<% end %>
