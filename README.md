@@ -48,15 +48,30 @@ Beyond just an AI assistant, Plain acts as a comprehensive documentation site. W
 
 
 
+Install Migrations
 
-rails plain:install:migrations
-rails plain:load   
-
-bin/rails plain:tailwind_engine_watch --trace
+`rails plain:install:migrations`
 
 
-app/assets/config/manifest.js
+Load information to Index
+
+`rails plain:load`   
+
+in config/routes.rb mount the engine:
+
+`mount Plain::Engine => "/plain"`
+
+in app/assets/config/manifest.js
 
 add 
 
+```js
 //= link plain.css
+```
+
+
+### Development:
+
+`bin/rails plain:tailwind_engine_watch --trace`
+
+
