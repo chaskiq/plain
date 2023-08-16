@@ -1,7 +1,7 @@
 module Langchain
   module Processors
     class RB < Langchain::Processors::Base
-      EXTENSIONS = [".rb", ".js", ".erb", ".md", ".json", ".gemspec"]
+      EXTENSIONS = [".rb", ".js", ".erb", ".md", ".gemspec"]
       CONTENT_TYPES = ["text/plain"]
 
       # Parse the document and return the text
@@ -11,13 +11,38 @@ module Langchain
         data.read
       end
     end
+
+    class JS < Langchain::Processors::Base
+      EXTENSIONS = [".js", ".tsx", ".jsx"]
+      CONTENT_TYPES = ["application/javascript"]
+
+      # Parse the document and return the text
+      # @param [File] data
+      # @return [Hash]
+      def parse(data)
+        data.read
+      end
+    end
+
+    class JSON < Langchain::Processors::Base
+      EXTENSIONS = [".json"]
+      CONTENT_TYPES = ["application/json"]
+
+      # Parse the document and return the text
+      # @param [File] data
+      # @return [Hash]
+      def parse(data)
+        data.read
+      end
+    end
   end
+
 end
 
 module Plain
   class Markdownray < Redcarpet::Render::HTML
     def block_code(code, language)
-      CodeRay.scan(code, language).div
+      CodeRay.scan(code, language).div rescue "xxx"
     end
   end
 
@@ -69,6 +94,8 @@ module Plain
     def load_all
       client.create_default_schema
 
+      load_plain_docs
+      # load_manifests
       load_models
       load_controllers
       # load_views
@@ -129,7 +156,7 @@ module Plain
     end
 
     def load_plain_docs
-      # load_app_paths('plain', '*.md')
+      load_app_paths('*.md')
       load_app_paths('docs', '**', '*.md')
     end
 
@@ -153,6 +180,7 @@ module Plain
         autolink: true,
         lax_html_blocks: true
       }
+      # markdown_to_html = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
       markdown_to_html = Redcarpet::Markdown.new(rndr, options)
       markdown_to_html.render(text) #rescue nil
     end

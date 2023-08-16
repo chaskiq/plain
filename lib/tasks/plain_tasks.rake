@@ -10,10 +10,12 @@ namespace :plain do
   task :tailwind_engine_watch do
     require "tailwindcss-rails"
     # NOTE: tailwindcss-rails is an engine
-    system "#{Tailwindcss::Engine.root.join("exe/tailwindcss")} \
-           -i #{Plain::Engine.root.join("app/assets/stylesheets/plain/application.tailwind.css")} \
-           -o #{Plain::Engine.root.join("app/assets/builds/plain.css")} \
-           -c #{Plain::Engine.root.join("tailwind.config.js")} \
-           --minify -w"
+    Dir.chdir(Plain::Engine.root.to_s) do
+      system "#{Tailwindcss::Engine.root.join("exe/tailwindcss")} \
+            -i #{Plain::Engine.root.join("app/assets/stylesheets/plain/application.tailwind.css")} \
+            -o #{Plain::Engine.root.join("app/assets/builds/plain.css")} \
+            -c #{Plain::Engine.root.join("tailwind.config.js")} \
+            --minify -w"
+    end
   end
 end

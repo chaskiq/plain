@@ -3,6 +3,8 @@ class CreatePlainMessages < ActiveRecord::Migration[7.0]
     create_table :plain_messages do |t|
       t.string :role
       t.text :content
+      t.datetime :pinned_at
+      t.boolean :pinned
       t.references :plain_conversation, null: false, foreign_key: true
 
       t.timestamps

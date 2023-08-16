@@ -1,4 +1,6 @@
 
+<%= turbo_frame_tag "plain" %>
+
 <div class="lg:ml-72 xl:ml-80">
   <header class="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex">
     <div class="contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
@@ -38,6 +40,13 @@
         <div class="flex items-center gap-5">
           <nav class="hidden md:block">
             <ul role="list" class="flex items-center gap-8">
+              <li>
+                <a href="/plain" 
+                  data-turbo-frame="plain"
+                  class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                  Docs
+                </a>
+              </li>
               <!--<li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" href="/">API</a>
               </li>
@@ -46,8 +55,8 @@
               </li>-->
               <li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" 
-                href="https://railshackathon.com/entries/34" target="blank">
-                Vote for us in rails hackathon 2023
+                href="https://github.com/plain" target="blank">
+                  Star the project on github
                 </a>
               </li>
             </ul>

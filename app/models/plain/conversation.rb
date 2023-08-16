@@ -10,12 +10,16 @@ module Plain
       message = messages.new(role: "assistant", content: "")
 
       chat = Plain::AiDocs.new.conversation_client do |chunk|
-        #puts "chunk"
-        puts chunk
+        puts "****++"
+        p chunk
+        puts "****++"
         next if chunk["choices"].blank?
         chunk["choices"].each do |choice|
-          next unless choice["delta"]["content"].present?
-          complete_response << choice["delta"]["content"]
+          # puts choice["delta"]["content"].present?
+          # next unless choice["delta"]["content"].present?
+          new_content = choice["delta"]["content"]
+          next if new_content.nil?
+          complete_response << new_content
           message.content = complete_response
           message.save
         end

@@ -7,9 +7,34 @@
 
   <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
   <!-- actual rails host app -->
-  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-  <!--<script src="https://cdn.tailwindcss.com"></script>-->
+  <script type="module">
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+  </script>
+
+  <script type="module">
+    import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+    window.Stimulus = Application.start()
+
+    Stimulus.debug = true
+    Stimulus.register("scroll", class extends Controller {
+      // static targets = [ "scroll" ]
+      connect() {
+         this.element.scrollIntoView()
+      }
+    })
+
+    Stimulus.register("toggle-class", class extends Controller {
+      toggle(event) {
+        // Toggle 'active' class on button
+        event.currentTarget.classList.toggle('active');
+        
+        // Toggle 'hidden' class on controller's root element
+        this.element.classList.toggle('hidden');
+      }
+    })
+  </script>
 
 </head>
 <body>
