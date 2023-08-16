@@ -5,6 +5,7 @@ module Plain
       #@docs_structure = directory_hash(Rails.root.join('docs'))
       #render_markdown(params[:file_path])
       @docs_structure = DocsService.get_structure
+      @config = DocsService.config
   
       if params[:file_path].blank?
         @content = nil

@@ -8,8 +8,10 @@
     <div class="contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
       <div class="hidden lg:flex">
         <a aria-label="Home" href="/" class="flex space-x-2 items-center">
-          <% #= image_tag("add-logo-here", class: "h-10") %>
-          <span class="font-extrabold uppercase text-2xl">Plain</span>
+          <%= image_tag(@config["logo"], class: "h-10") %>
+          <span class="font-extrabold uppercase text-xl">
+            <%= @config["name"] || "PLAIN" %>
+          </span>
         </a>
       </div>
 
@@ -42,25 +44,29 @@
         <div class="flex items-center gap-5">
           <nav class="hidden md:block">
             <ul role="list" class="flex items-center gap-8">
-              <li>
-                <a href="/plain" 
-                  data-turbo-frame="plain"
-                  class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
-                  Docs
-                </a>
-              </li>
+              <% if @config["chat_envs"].present? and @config["chat_envs"].include?(Rails.env.to_s) %>
+                <li>
+                  <a href="/plain" 
+                    data-turbo-frame="plain"
+                    class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">
+                    Chat
+                  </a>
+                </li>
+              <% end %>
               <!--<li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" href="/">API</a>
               </li>
               <li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" href="/#">Documentation</a>
               </li>-->
+              <% @config["links"].each do |link| %>
               <li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" 
-                href="https://github.com/plain" target="blank">
-                  Star the project on github
+                href="<%= link["url"] %>" target="blank">
+                  <%= link["name"] %>
                 </a>
               </li>
+              <% end %>
             </ul>
           </nav>
           <div class="hidden md:block md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15"></div>

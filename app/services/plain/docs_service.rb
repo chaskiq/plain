@@ -22,10 +22,15 @@ class Plain::DocsService
     config = YAML.load_file(file_path)
     main_sections = config['sections']
   end
-  
-  def self.parse_main_sections
+
+  def self.config
     file_path = Rails.root.join('docs', 'config.yml')
     config = YAML.safe_load(File.read(file_path)) || {}
+  end
+  
+  def self.parse_main_sections
+    #file_path = Rails.root.join('docs', 'config.yml')
+    #config = YAML.safe_load(File.read(file_path)) || {}
     main_sections = config['sections'] || []
   
     # Get all directories under 'docs'
