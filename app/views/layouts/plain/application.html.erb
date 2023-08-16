@@ -7,10 +7,15 @@
 
   <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
   <!-- actual rails host app -->
-  <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+  <!-- 
+  <script type="module">
+    import railsActioncable from 'https://cdn.skypack.dev/@rails/actioncable';
+  </script>
 
   <script type="module">
-    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo-rails';
   </script>
 
   <script type="module">
@@ -35,6 +40,7 @@
       }
     })
   </script>
+  -->
 
 </head>
 <body>

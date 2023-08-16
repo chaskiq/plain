@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "message-list-#{@current_page}" do %>
   <div class="flex flex-col-reverse">
     <% if @current_page.zero? %>
-      <span data-controller="scroll"></span>
+      <span data-controller="scroll-to"></span>
     <% end %>
     <%= render partial: "plain/messages/message_item", collection: @messages, as: :message  %>
     <% if @messages.size.positive? %>
