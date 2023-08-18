@@ -54,14 +54,28 @@ Beyond just an AI assistant, Plain acts as a comprehensive documentation site. W
 
 ## Getting started
 
-Install Migrations
+### Install Migrations:
 
 `rails plain:install:migrations`
 
+### Configuration:
 
-Load information to Index
+Some environment configuration variables are required:
+
+```bash
+QDRANT_URL = 
+QDRANT_API_KEY = 
+QDRANT_INDEX = 
+OPENAI_API_KEY =
+```
+
+You can get a free account on the https://qdrant.tech/ there will be more providers to connect soon.
+
+### Load information to Index:
 
 `rails plain:load`   
+
+### Mount Doc site:
 
 in config/routes.rb mount the engine:
 
