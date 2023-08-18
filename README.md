@@ -79,6 +79,10 @@ Place your markdowns on a `docs` folder on your project's root. also you can add
 ![Screen Shot 2023-08-17 at 10 54 14 PM](https://github.com/chaskiq/plain/assets/11976/0dee77c6-9cb7-489e-8521-3c870952861c)
 
 
+### Documentation side main config
+
+Put this on /docs/config.yml
+
 ```yaml
 name: "Rauversion docs"
 logo: "logo.png"
