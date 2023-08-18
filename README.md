@@ -18,7 +18,7 @@ gem "plain", github: "chaskiq/plain", branch: "main"
 
 ### Overview
 
-Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023.
+Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023. Special Kudos to @claunicole & @silva96
 
 
 ### Functionality
