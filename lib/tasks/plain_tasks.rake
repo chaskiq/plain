@@ -11,7 +11,7 @@ namespace :plain do
     require "tailwindcss-rails"
     # NOTE: tailwindcss-rails is an engine
     Dir.chdir(Plain::Engine.root.to_s) do
-      system "#{Tailwindcss::Engine.root.join("exe/tailwindcss")} \
+      system "tailwindcss \
             -i #{Plain::Engine.root.join("app/assets/stylesheets/plain/application.tailwind.css")} \
             -o #{Plain::Engine.root.join("app/assets/builds/plain.css")} \
             -c #{Plain::Engine.root.join("tailwind.config.js")} \

@@ -9,7 +9,6 @@ PATH
       rails (>= 7.0.6)
       redcarpet (~> 2.3.0)
       ruby-openai (~> 4.2)
-      tailwindcss-rails
 
 GEM
   remote: https://rubygems.org/
@@ -184,8 +183,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-arm64-darwin)
-    tailwindcss-rails (2.0.30-arm64-darwin)
-      railties (>= 6.0.0)
     thor (1.2.2)
     tiktoken_ruby (0.0.5-arm64-darwin)
     timeout (0.4.0)

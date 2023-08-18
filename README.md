@@ -75,3 +75,4 @@ add
 `bin/rails plain:tailwind_engine_watch --trace`
 
 
+License: MIT
