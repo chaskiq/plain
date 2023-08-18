@@ -2,12 +2,9 @@
 
 Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023.
 
-
-This is an example of plain operating in Rauversion project
+*This is an example of plain operating in Rauversion project*
 
 https://github.com/chaskiq/plain/assets/11976/87f0d62d-d63a-45d9-91e2-b8878542c4ee
-
-
 
 ## Usage
 How to use my plugin.
@@ -16,25 +13,8 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "plain"
+gem "plain", github: "chaskiq/plain", branch: "main"
 ```
-
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install plain
-```
-
-## Contributing
-Contribution directions go here.
-
-## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
 
 ### Overview
 
