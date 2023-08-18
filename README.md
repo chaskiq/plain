@@ -119,9 +119,6 @@ sections:
 ```
 
 
-
-For you
-
 ### Development:
 
 `bin/rails plain:tailwind_engine_watch --trace`
