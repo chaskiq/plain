@@ -23,7 +23,7 @@
     window.Stimulus = Application.start()
 
     Stimulus.debug = true
-    Stimulus.register("scroll", class extends Controller {
+    Stimulus.register("scroll-to", class extends Controller {
       // static targets = [ "scroll" ]
       connect() {
          this.element.scrollIntoView()

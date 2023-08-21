@@ -7,6 +7,7 @@ namespace :plain do
   end
 
 
+  desc "Build the tailwind css"
   task :tailwind_engine_watch do
     require "tailwindcss-rails"
     # NOTE: tailwindcss-rails is an engine

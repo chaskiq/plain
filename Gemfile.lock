@@ -220,6 +220,8 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-arm64-darwin)
+    tailwindcss-rails (2.0.30-arm64-darwin)
+      railties (>= 6.0.0)
     thor (1.2.2)
     tiktoken_ruby (0.0.5-arm64-darwin)
     timeout (0.4.0)
@@ -264,6 +266,7 @@ DEPENDENCIES
   shoulda-matchers (~> 5.0)
   sprockets-rails
   sqlite3
+  tailwindcss-rails
   turbo-rails
   web-console
   webdrivers
