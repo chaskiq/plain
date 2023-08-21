@@ -51,7 +51,9 @@ Beyond just an AI assistant, Plain acts as a comprehensive documentation site. W
 
 ### Configuration:
 
-put this in an config/initializers , config/initializers/plain.rb
+Put the following on config/initializers:
+
+> config/initializers/plain.rb
 
 ```ruby
 Plain.configure do |config|
@@ -80,9 +82,7 @@ Plain.configure do |config|
 end
 ```
 
-For other vector search please refer to langchainrb repo https://github.com/andreibondarev/langchainrb#using-vector-search-databases-
-
-Some environment configuration variables are required:
+For the above configuration some environment configuration variables are required:
 
 ```bash
 QDRANT_URL = 
@@ -91,7 +91,8 @@ QDRANT_INDEX =
 OPENAI_API_KEY =
 ```
 
-You can get a free account on the https://qdrant.tech/ there will be more providers to connect soon.
+You can get a free account on the https://qdrant.tech/. 
+For other vector search please refer to langchainrb repo https://github.com/andreibondarev/langchainrb#using-vector-search-databases-
 
 ### Load information to Index:
 
@@ -99,7 +100,7 @@ You can get a free account on the https://qdrant.tech/ there will be more provid
 
 ### Mount Doc site:
 
-in config/routes.rb mount the engine:
+In config/routes.rb mount the engine:
 
 `mount Plain::Engine => "/plain"`
 
