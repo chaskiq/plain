@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 7.0.6"
 
-  spec.add_dependency "langchainrb", "~> 0.6.8"
+  spec.add_dependency "langchainrb", "~> 0.6.12"
   spec.add_dependency "ruby-openai", "~> 4.2"
   spec.add_dependency "qdrant-ruby", "~> 0.9.2"
   spec.add_dependency "coderay", "~> 1.1"

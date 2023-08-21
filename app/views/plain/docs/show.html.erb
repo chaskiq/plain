@@ -8,7 +8,9 @@
     <div class="contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
       <div class="hidden lg:flex">
         <a aria-label="Home" href="/" class="flex space-x-2 items-center">
-          <%= image_tag(@config["logo"], class: "h-10") %>
+          <% if @config["logo"] %>
+            <%= image_tag(@config["logo"], class: "h-10") %>
+          <% end %>
           <span class="font-extrabold uppercase text-xl">
             <%= @config["name"] || "PLAIN" %>
           </span>
@@ -59,13 +61,15 @@
               <li>
                 <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" href="/#">Documentation</a>
               </li>-->
-              <% @config["links"].each do |link| %>
-              <li>
-                <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" 
-                href="<%= link["url"] %>" target="blank">
-                  <%= link["name"] %>
-                </a>
-              </li>
+              <% if @config["links"] %>
+                <% @config["links"].each do |link| %>
+                <li>
+                  <a class="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white" 
+                  href="<%= link["url"] %>" target="blank">
+                    <%= link["name"] %>
+                  </a>
+                </li>
+                <% end %>
               <% end %>
             </ul>
           </nav>

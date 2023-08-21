@@ -3,10 +3,6 @@ require 'front_matter_parser'
 class Plain::DocsService
   DEFAULT_POSITION = 999
 
-  def self.get_structure_old
-    get_files('docs')
-  end
-
   def self.get_structure
     # Get markdown files at root directory
     root_files = get_files('docs', true)
@@ -18,13 +14,13 @@ class Plain::DocsService
   end
 
   def self.parse_section_items
-    file_path = Rails.root.join('docs', 'config.yml')
-    config = YAML.load_file(file_path)
+    config = self.config
     main_sections = config['sections']
   end
 
   def self.config
     file_path = Rails.root.join('docs', 'config.yml')
+    return {} if !File.exist?(file_path) 
     config = YAML.safe_load(File.read(file_path)) || {}
   end
   
@@ -73,6 +69,7 @@ class Plain::DocsService
   private
 
   def self.get_files(directory, only_files_at_root = false)
+    FileUtils.mkdir_p(Rails.root.join(directory))
     Dir.entries(Rails.root.join(directory)).sort.each_with_object({ name: directory.split('/').last, type: 'directory', children: [], position: 999 }) do |entry, parent|
       next if ['.', '..'].include?(entry)
   

@@ -49,5 +49,14 @@ module Plain
       File.write(full_path, self.content) unless File.exist?(full_path)
     end
 
+    def type
+      case self.role
+      when "user"
+        "human"
+      when "assistant"
+        "ai"
+      end
+    end
+
   end
 end

@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  subject: MyString
+  content: MyString
   conversation: one
 
 two:
-  subject: MyString
+  content: MyString
   conversation: two
