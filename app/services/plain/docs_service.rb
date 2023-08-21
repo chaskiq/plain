@@ -74,15 +74,16 @@ class Plain::DocsService
       next if ['.', '..'].include?(entry)
   
       path = "#{directory}/#{entry}"
-  
-      if entry == 'config.yml' && File.exist?(path)
-        config = YAML.load_file(path)
+      path_in_root = Rails.root.join(path)
+      
+      if entry == 'config.yml' && File.exist?(path_in_root)
+        config = YAML.load_file(path_in_root)
         parent[:position] = config['position'] || 999
-      elsif File.directory?(path)
+      elsif File.directory?(path_in_root)
         # Skip directories if only_files_at_root is true
-        parent[:children] << get_files(path) unless only_files_at_root
+        parent[:children] << get_files(path_in_root) unless only_files_at_root
       else
-        parsed = FrontMatterParser::Parser.parse_file(path)
+        parsed = FrontMatterParser::Parser.parse_file(path_in_root)
         parent[:children] << { name: parsed.front_matter['title'] || entry.sub('.md', ''), type: 'file', path: path.sub('docs/', '').sub('.md', ''), position: parsed.front_matter['menu_position'] || 999 }
       end
   

@@ -2,6 +2,8 @@ require "test_helper"
 require 'mocha/minitest'
 
 class PlainTest < ActiveSupport::TestCase
+
+  ## ai_docs
   test 'returns the Plain configuration object' do
     assert_instance_of Plain::Configuration, Plain.configuration
   end
@@ -30,6 +32,9 @@ class PlainTest < ActiveSupport::TestCase
     #assert_received(Plain.configuration.vector_search, :create_default_schema)
     #assert_received(Plain::AiDocs.any_instance, :load_configuration_paths)
   end
+
+
+  ## docs_service
 
   test '.get_structure returns the correct structure' do
     # Setup
