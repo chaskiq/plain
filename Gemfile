@@ -23,6 +23,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
+gem "ruby-openai", "~> 4.2"
+gem "qdrant-ruby", "~> 0.9.2"
+
 group :test do
   gem 'mocha'
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

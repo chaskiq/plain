@@ -40,6 +40,37 @@ Beyond just an AI assistant, Plain acts as a comprehensive documentation site. W
 
 ### Configuration:
 
+put this in an config/initializers , config/initializers/plain.rb
+
+```ruby
+Plain.configure do |config|
+  config.paths = [
+    Rails.root.join("Gemfile"), 
+    Rails.root.join("app/models"), 
+    Rails.root.join("app/controllers"), 
+    Rails.root.join("spec")
+  ]
+  config.extensions = ["rb", "js", "md", "json", "erb"]
+  config.chat_environments = [:development]
+
+  # initialize your vector search
+  config.vector_search = Langchain::Vectorsearch::Qdrant.new(
+    url: ENV["QDRANT_URL"],
+    api_key: ENV["QDRANT_API_KEY"],
+    index_name: ENV["QDRANT_INDEX"],
+    llm: Langchain::LLM::OpenAI.new(
+      api_key: ENV["OPENAI_API_KEY"],
+      llm_options: {},
+      default_options: {
+        chat_completion_model_name: "gpt-3.5-turbo-16k"
+      }
+    )
+  )
+end
+```
+
+For other vector search please refer to langchainrb repo https://github.com/andreibondarev/langchainrb#using-vector-search-databases-
+
 Some environment configuration variables are required:
 
 ```bash

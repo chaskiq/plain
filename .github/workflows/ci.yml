@@ -16,7 +16,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7
+        ruby-version: 3.2
 
     - name: Build and test with Rake
       env:
@@ -26,4 +26,4 @@ jobs:
         bundle install --jobs 4 --retry 3
         bundle exec rake db:create
         bundle exec rake db:migrate
-        bundle exec rake
+        bundle exec rails test

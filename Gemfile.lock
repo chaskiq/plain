@@ -258,6 +258,8 @@ DEPENDENCIES
   pg
   plain!
   puma
+  qdrant-ruby (~> 0.9.2)
+  ruby-openai (~> 4.2)
   selenium-webdriver
   shoulda-matchers (~> 5.0)
   sprockets-rails
