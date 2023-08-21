@@ -1,4 +1,9 @@
-# What is this Ruby on Plan rails engine
+# Ruby on Plain
+
+[![Rails Test](https://github.com/chaskiq/plain/actions/workflows/ci.yml/badge.svg)](https://github.com/chaskiq/plain/actions/workflows/ci.yml)
+
+---
+## What is this Ruby on Plan rails engine
 
 Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023.
 
