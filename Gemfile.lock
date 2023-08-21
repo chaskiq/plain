@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    plain-rails (0.1.0)
+    plain-rails (0.1.1)
       coderay (~> 1.1)
       front_matter_parser (~> 1.0.1)
       langchainrb (~> 0.6.12)
