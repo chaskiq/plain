@@ -42,7 +42,7 @@ end
 module Plain
   class Markdownray < Redcarpet::Render::HTML
     def block_code(code, language)
-      CodeRay.scan(code, language).div rescue "xxx"
+      CodeRay.scan(code, language).div() rescue "xxx"
     end
   end
 
@@ -53,7 +53,6 @@ module Plain
         #chat_completion_model_name: "gpt-3.5-turbo-16k"
         chat_completion_model_name: "gpt-4"
       })
-      llm.complete_response = true
       # refactor this
       if block_given?
         @conversation_client = Langchain::Conversation.new(llm: llm) do |chunk|
@@ -65,19 +64,7 @@ module Plain
     end
 
     def client
-      @client ||= Langchain::Vectorsearch::Qdrant.new(
-        url: ENV["QDRANT_URL"],
-        api_key: ENV["QDRANT_API_KEY"],
-        index_name: ENV["QDRANT_INDEX"],
-        #environment: ENV['PINECONE_ENVIRONMENT'],
-        llm: Langchain::LLM::OpenAI.new(
-          api_key: ENV["OPENAI_API_KEY"],
-          llm_options: {},
-          default_options: {
-            chat_completion_model_name: "gpt-3.5-turbo-16k"
-          }
-        )
-      )
+      @client ||= Plain.configuration.vector_search
     end
 
     def self.set_conversation_title(conversation)
@@ -93,83 +80,32 @@ module Plain
 
     def load_all
       client.create_default_schema
-
-      load_plain_docs
-      # load_manifests
-      load_models
-      load_controllers
-      # load_views
-      load_jobs
-      load_mailers
-      load_services
-      load_specs
-      load_javascripts
-      load_db_schema
-      load_configs
+      load_configuration_paths
     end
 
-    def load_models
-      load_app_paths('app', 'models', '**', '*.rb')
-    end
+    def load_configuration_paths
+      # Distinguishing files from directories
+      files_without_extension, directories = Plain.configuration.paths.partition { |path| File.file?(path) }
 
-    def load_controllers
-      load_app_paths('app', 'controllers', '**', '*.rb')
-    end
+      # Getting files from directories based on the allowed extensions
+      files_with_extension = directories.flat_map do |dir|
+        Dir[File.join(dir, "*.{#{Plain.configuration.extensions.join(',')}}")]
+      end
 
-    def load_views
-      load_app_paths('app', 'views', '**', '*.erb')
-    end
+      puts "FILES WITH EXTENSIONS"
+      puts files_with_extension
+      # Add files with extensions to the client
+      client.add_data(paths: files_with_extension)
 
-    def load_jobs
-      load_app_paths('app', 'jobs', '**', '*.rb')
-    end
+      puts "FILES WITHOUT EXTENSIONS"
+      puts files_with_extension
+      # Process files without extensions
+      files_without_extension.each do |file|
+        content = File.read(file)
+        #texts = Langchain::Chunker::Text.new(content).chunks
+        client.add_texts(texts: content)
+      end
 
-    def load_mailers
-      load_app_paths('app', 'mailers', '**', '*.rb')
-    end
-
-    def load_services
-      load_app_paths('app', 'services', '**', '*.rb')
-    end
-
-    def load_specs
-      load_app_paths('spec', '**', '*.rb')
-    end
-
-    def load_javascripts
-      load_app_paths('app', 'javascript', '**', '*.js')
-    end
-
-    def load_db_schema
-      load_app_paths('db', '**', '*.rb')
-    end
-
-    def load_configs
-      load_app_paths('config', 'initializers', '**', '*.rb')
-      load_app_paths('config', 'environments', '**', '*.rb')
-    end
-
-    def load_plain_engine
-      load_app_paths('plain', '**', '*.rb')
-      load_app_paths('plain', '**', '*.erb')
-      load_app_paths('plain', '*.md')
-    end
-
-    def load_plain_docs
-      load_app_paths('*.md')
-      load_app_paths('docs', '**', '*.md')
-    end
-
-    def load_manifests
-      # load_app_paths('plain', '*.md')
-      # load_app_paths('Gemfile')
-      load_app_paths('package.json')
-      #load_app_paths('plain', 'plain.gemspec')
-    end
-
-    def load_app_paths(*paths)
-      files = Dir[Rails.root.join(*paths)]
-      client.add_data(paths: files) if files.any?
     end
 
     def self.convert_markdown(text)

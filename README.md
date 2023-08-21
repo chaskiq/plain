@@ -1,4 +1,9 @@
-# What is this Ruby on Plan rails engine
+# Ruby on Plain
+
+[![Rails Test](https://github.com/chaskiq/plain/actions/workflows/ci.yml/badge.svg)](https://github.com/chaskiq/plain/actions/workflows/ci.yml)
+
+---
+## What is this Ruby on Plan rails engine
 
 Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023.
 
@@ -13,7 +18,13 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "plain", github: "chaskiq/plain", branch: "main"
+gem "plain-rails"
+```
+
+or development version
+
+```ruby
+gem "plain-rails", github: "chaskiq/plain", branch: "main"
 ```
 
 ### Overview
@@ -39,6 +50,37 @@ Beyond just an AI assistant, Plain acts as a comprehensive documentation site. W
 `rails plain:install:migrations`
 
 ### Configuration:
+
+put this in an config/initializers , config/initializers/plain.rb
+
+```ruby
+Plain.configure do |config|
+  config.paths = [
+    Rails.root.join("Gemfile"), 
+    Rails.root.join("app/models"), 
+    Rails.root.join("app/controllers"), 
+    Rails.root.join("spec")
+  ]
+  config.extensions = ["rb", "js", "md", "json", "erb"]
+  config.chat_environments = [:development]
+
+  # initialize your vector search
+  config.vector_search = Langchain::Vectorsearch::Qdrant.new(
+    url: ENV["QDRANT_URL"],
+    api_key: ENV["QDRANT_API_KEY"],
+    index_name: ENV["QDRANT_INDEX"],
+    llm: Langchain::LLM::OpenAI.new(
+      api_key: ENV["OPENAI_API_KEY"],
+      llm_options: {},
+      default_options: {
+        chat_completion_model_name: "gpt-3.5-turbo-16k"
+      }
+    )
+  )
+end
+```
+
+For other vector search please refer to langchainrb repo https://github.com/andreibondarev/langchainrb#using-vector-search-databases-
 
 Some environment configuration variables are required:
 

@@ -10,19 +10,14 @@ module Plain
       message = messages.new(role: "assistant", content: "")
 
       chat = Plain::AiDocs.new.conversation_client do |chunk|
-        puts "****++"
+        puts "****"
         p chunk
-        puts "****++"
-        next if chunk["choices"].blank?
-        chunk["choices"].each do |choice|
-          # puts choice["delta"]["content"].present?
-          # next unless choice["delta"]["content"].present?
-          new_content = choice["delta"]["content"]
-          next if new_content.nil?
-          complete_response << new_content
-          message.content = complete_response
-          message.save
-        end
+        puts "****"
+
+        next if chunk.content.nil?
+        complete_response << chunk.content
+        message.content = complete_response
+        message.save
       end
 
       # plain_answer = vector_search.ask(question: @question)
