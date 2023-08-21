@@ -13,7 +13,13 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "plain", github: "chaskiq/plain", branch: "main"
+gem "plain-rails"
+```
+
+or development version
+
+```ruby
+gem "plain-rails", github: "chaskiq/plain", branch: "main"
 ```
 
 ### Overview
