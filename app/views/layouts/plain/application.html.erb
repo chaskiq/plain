@@ -92,7 +92,8 @@
         }
       }
 
-      toggleDarkMode() {
+      toggleDarkMode(e) {
+        e.preventDefault()
         if (this.element.classList.toggle('dark')) {
           localStorage.setItem('dark-mode', 'enabled');
         } else {
