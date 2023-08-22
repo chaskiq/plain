@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    plain-rails (0.1.1)
+    plain-rails (0.1.2)
       front_matter_parser (~> 1.0.1)
       langchainrb (~> 0.6.12)
       qdrant-ruby (~> 0.9.2)
