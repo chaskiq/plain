@@ -8,14 +8,14 @@
         action: "turbo:submit-start->loader#formSubmitting turbo:submit-end->loader#formSubmitted"
       }
     } do |form| %>
-    <div class="absolute bottom-0 border-t pt-2 bg-white h-[52px]
-    bg-white/70 backdrop-blur shadow-[0_-1px_rgba(229,231,235,.53),0_5px_20px_-5px_rgba(0,0,0,.24)]
+    <div class="absolute bottom-0 border-t dark:border-zinc-900 pt-2 bg-white h-[52px]
+    bg-white/70 dark:bg-black/90 backdrop-blur dark:shadow-zinc-900 shadow-[0_-1px_rgba(229,231,235,.53),0_5px_20px_-5px_rgba(0,0,0,.24)]
     ">
       <div class="flex space-x-2 w-[448px] px-2">
         <%= form.text_field :content, 
           label: false,
           placeholder: "Write your prompt",
-          class: "rounded-md flex-1 sm:text-sm text-base bg-zinc-200/50 border border-zinc-200/80 resize-none scroll-m-2 h-[36px] transition-colors focus:border-zinc-400 focus:ring-0 focus:outline-none"
+          class: "rounded-md flex-1 sm:text-sm text-base bg-zinc-200/50 dark:bg-zinc-800/30 border border-zinc-200/50 dark:border-zinc-600 resize-none scroll-m-2 h-[36px] transition-colors focus:border-zinc-400 focus:ring-0 focus:outline-none"
           %>
         
         <div class="">

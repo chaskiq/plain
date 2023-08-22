@@ -7,13 +7,30 @@
 @layer components {
 
   .btn-dark {
-    @apply cursor-pointer whitespace-nowrap font-medium inline-flex justify-center gap-2 items-center bg-zinc-900 hover:bg-zinc-800 text-zinc-100 rounded-md shadow-md text-sm hover:text-zinc-300 py-1.5 transition-colors px-3 border border-zinc-700 disabled:bg-white disabled:border-zinc-200 disabled:text-zinc-400 disabled:shadow-none disabled:hover:text-zinc-400 disabled:cursor-not-allowed select-none;
+    @apply cursor-pointer whitespace-nowrap font-medium 
+    inline-flex justify-center gap-2 items-center 
+    bg-zinc-900 dark:bg-zinc-100 
+    hover:bg-zinc-800 dark:hover:bg-zinc-200 
+    text-zinc-100 dark:text-zinc-900 
+    rounded-md shadow-md text-sm 
+    hover:text-zinc-300 dark:hover:text-zinc-700 
+    py-1.5 transition-colors px-3 
+    border border-zinc-700 dark:border-zinc-300 
+    disabled:bg-white disabled:border-zinc-200 disabled:text-zinc-400 disabled:shadow-none 
+    disabled:hover:text-zinc-400 disabled:cursor-not-allowed select-none;
   }
   .btn {
-    @apply rounded-md h-8 px-2 sm:px-3.5 inline-flex items-center sm:shadow bg-white sm:border text-zinc-500 font-medium text-sm leading-6 hover:bg-zinc-50 transition-colors ease-in-out disabled:opacity-50 disabled:cursor-not-allowed select-none whitespace-nowrap;
+    @apply rounded-md h-8 px-2 sm:px-3.5 inline-flex items-center sm:shadow 
+    bg-white dark:bg-black 
+    sm:border dark:border-zinc-800
+    text-zinc-500 dark:text-zinc-100 
+    font-medium text-sm leading-6 
+    hover:bg-zinc-50 dark:hover:bg-zinc-950 
+    transition-colors ease-in-out disabled:opacity-50 disabled:cursor-not-allowed 
+    select-none whitespace-nowrap;
   }
 
   .link {
-    @apply rounded-lg text-slate-900 font-semibold transition flex items-center gap-3 text-[0.8125rem] leading-6 py-1 px-1.5 hover:bg-slate-900/[0.03] -my-1 -mx-1.5
+    @apply rounded-lg text-zinc-900 dark:text-zinc-100 font-semibold transition flex items-center gap-3 text-[0.8125rem] leading-6 py-1 px-1.5 hover:bg-zinc-900/[0.03] -my-1 -mx-1.5
   }
 }

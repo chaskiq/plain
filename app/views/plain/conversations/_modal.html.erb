@@ -24,8 +24,8 @@
             <div class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
              
 
-              <div class="h-0 flex-1 overflow-y-auto bg-zinc-50 border-l">
-                <div class="bg-white/80 backdrop-blur shadow-[0_1px_rgba(202,206,214,.3),0_5px_10px_-5px_rgba(0,0,0,.05)] justify-between py-3 pl-3 pr-2">
+              <div class="h-0 flex-1 overflow-y-auto bg-zinc-50 dark:bg-zinc-900 border-l dark:border-zinc-700">
+                <div class="bg-white/80 dark:bg-zinc-900/90 backdrop-blur shadow-[0_1px_rgba(202,206,214,.3),0_5px_10px_-5px_rgba(0,0,0,.05)] justify-between py-3 pl-3 pr-2">
                   <div class="flex items-center justify-between">
                     
                     <% if @conversation.present? || @needs_back  %>
@@ -36,7 +36,7 @@
                       <% end %>
                     <% end %>
 
-                    <h2 class="text-lg font-bold leading-6 text-gray-900" 
+                    <h2 class="text-lg font-bold leading-6 text-gray-900 dark:text-gray-100" 
                       id="slide-over-title">
                       PLAIN AI ASSISTANT
                     </h2>
@@ -44,7 +44,7 @@
                     <div class="ml-3 flex h-7 items-center">
                       <button type="button"
                         data-action="toggle-class#toggle"
-                        class="rounded-md bg-black/20 text-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        class="rounded-md bg-black/20 text-gray-700 dark:text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
                         <span class="sr-only">Close panel</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -53,13 +53,13 @@
                     </div>
                   </div>
                   <div class="mt-1 hidden">
-                    <p class="text-sm text-brand-300">
+                    <p class="text-sm text-brand-300 dark:text-brand-700">
                       Get started by filling in the information below to create your new project.
                     </p>
                   </div>
                 </div>
                 <div class="flex flex-1 flex-col justify-between">
-                  <div class="divide-y divide-gray-200">
+                  <div class="divide-y divide-gray-200 dark:divide-gray-800">
                     <div class="space-y-6-- py-6--">
                       <%= yield %>
                     </div>

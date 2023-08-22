@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-controller="dark-mode">
 <head>
   <title>Plain</title>
   <%= csrf_meta_tags %>
@@ -85,11 +85,27 @@
       }
     })
 
+    Stimulus.register("dark-mode", class extends Controller {
+      initialize() {
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+          this.element.classList.add('dark');
+        }
+      }
+
+      toggleDarkMode() {
+        if (this.element.classList.toggle('dark')) {
+          localStorage.setItem('dark-mode', 'enabled');
+        } else {
+          localStorage.setItem('dark-mode', 'disabled');
+        }
+      }
+    });
+
   </script>
   
 
 </head>
-<body>
+<body class="antialiased text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-900">
 
   <%= yield %>
 

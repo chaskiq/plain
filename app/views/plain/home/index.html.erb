@@ -1,14 +1,14 @@
 <%= turbo_frame_tag "plain" do %>
   <%= render "plain/conversations/modal" do %>
-    <div class="border shadow-sm rounded-md bg-white m-4">
-      <h2 class=" p-4 inline-block text-md sm:text-lg font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
+    <div class="border dark:border-zinc-900 shadow-sm rounded-md bg-white dark:bg-zinc-800 m-4">
+      <h2 class=" p-4 inline-block text-md sm:text-lg font-extrabold text-zinc-900 tracking-tight dark:text-zinc-200">
         Continue conversationsss
       </h2>
 
-      <div class="grid grid-cols-1 divide-y">
+      <div class="grid grid-cols-1 divide-y dark:divide-zinc-700">
         <%= render partial: "plain/conversations/conversation_item", collection: @conversations, as: :conversation  %>
       </div>
-      <div class="flex justify-between px-3 py-2 text-xs font-medium border-t rounded-b-lg bg-zinc-100/75">
+      <div class="flex justify-between px-3 py-2 text-xs font-medium border-t dark:border-zinc-700 rounded-b-lg bg-zinc-100/75 dark:bg-zinc-900/75">
         <%= link_to "New conversation", new_conversation_path, class: "btn-dark" %>
         <%= link_to "See previous chats", conversations_path, class: "link" %>
       </div>
