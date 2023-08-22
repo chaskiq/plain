@@ -6,16 +6,10 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Miguel Michelson"]
   spec.email       = ["miguelmichelson@gmail.com"]
   spec.homepage    = "https://github.com/chaskiq/plain"
-  spec.summary     = "Plain is an ai and documentation system for rails apps."
-  spec.description = "Plain is an ai and documentation system for rails apps."
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  #spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  spec.summary     = "Plain is an AI and documentation system for rails apps."
+  spec.description = "Plain is an AI and documentation system for rails apps."
 
   spec.metadata["homepage_uri"] = spec.homepage
-  #spec.metadata["source_code_uri"] = "http://mygemserver.com"
-  #spec.metadata["changelog_uri"] = "http://mygemserver.com"
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
     Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
@@ -26,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "langchainrb", "~> 0.6.12"
   spec.add_dependency "ruby-openai", "~> 4.2"
   spec.add_dependency "qdrant-ruby", "~> 0.9.2"
-  spec.add_dependency "coderay", "~> 1.1"
+  # spec.add_dependency "coderay", "~> 1.1"
   spec.add_dependency "redcarpet", "~> 2.3.0"
   spec.add_dependency "front_matter_parser", "~> 1.0.1"
   # spec.add_dependency "tailwindcss-rails"

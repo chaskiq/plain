@@ -7,7 +7,7 @@
 
 Plain is a Rails engine that serves as an Artificial Intelligence (AI) assistant for your Rails project. It's not just about organizing your codes or managing your project structure, but about providing deeper, more meaningful context to your work, in real-time. It was proudly developed and presented during the esteemed Rails Hackathon 2023.
 
-*This is an example of plain operating in Rauversion project*
+*This is an example of plain operating in Rauversion.com project*
 
 https://github.com/chaskiq/plain/assets/11976/87f0d62d-d63a-45d9-91e2-b8878542c4ee
 
@@ -127,7 +127,7 @@ Place your markdowns on a `docs` folder on your project's root. also you can add
 Put this on /docs/config.yml
 
 ```yaml
-name: "Rauversion docs"
+name: "Plain docs"
 logo: "logo.png"
 chat_envs: 
   - "development"

@@ -24,7 +24,7 @@ module Plain
       @next_page = @current_page + 1
       @conversations = Plain::Conversation.limit(PER_PAGE)
                                    .offset(@current_page * PER_PAGE)
-                                   .order(pinned_at: :asc, created_at: :desc)
+                                   .order(pinned: :desc, pinned_at: :asc, created_at: :desc)
     end
 
     def show
@@ -42,6 +42,12 @@ module Plain
 
     def update
       @conversation = Plain::Conversation.find(params[:id])
+    end
+
+    def pin
+      @conversation = Plain::Conversation.find(params[:id])
+      new_state = !@conversation.pinned?
+      @conversation.update(pinned: new_state, pinned_at: new_state ? Time.zone.now : nil )
     end
 
     def destroy

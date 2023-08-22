@@ -1,21 +1,42 @@
 <div id="message-item-<%= message.id %>" 
-  class="message-role <%= message.assistant? ? "bg-white" : "bg-brand-200" %> 
-  mx-4 flex flex-col pb-1 p-2 my-1 shadow-sm rounded-md border border-black/10">
+  <% if message.assistant? %>
+    data-controller="markdoc"
+  <% end %>
+  data-markdoc-content-value="<%= message.content %>"
+  class="message-role <%= message.assistant? ? "bg-white dark:bg-zinc-800" : "bg-brand-200 dark:bg-brand-600" %> 
+  mx-4 flex flex-col p-2 my-1 shadow-sm rounded-md border border-black/10 dark:border-black/90">
 
-  <%= "Plain bot:" if message.assistant? %>
 
-  <div class="prose prose-sm space-y-2">
-    <% unless message.content.nil? %>
-      <%= raw Plain::AiDocs.convert_markdown message.content %>
-    <% end %>
+  <% if message.assistant? %>
+    <div class="flex items-center space-x-2">
+      <div class="group flex items-center h-8 rounded-full 
+      text-sm font-semibold whitespace-nowrap px-3 
+      focus:outline-none focus:ring-2
+       bg-green-50 text-green-600
+       dark:bg-green-600 dark:text-green-50">
+        <div class="flex space-x-2 font-semibold text-zinc-900 dark:text-white">
+          <svg class="h-5 w-5 block" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.5 2.5a5 5 0 015 5v6a1 1 0 01-1 1h-8a1 1 0 01-1-1v-6a5 5 0 015-5zm0 0V0M4 11.5h7M.5 8v4m14-4v4m-9-2.5a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z" stroke="currentColor"></path></svg>
+          <span><%= "Plain bot" %></span>
+        </div>
+      </div>
+
+      <span class="text-xs text-gray-500">
+        <%= l(message.created_at, format: :short) %>
+      </span>
+    </div>
+  <% end %>
+
+  <div class="prose prose-sm dark:prose-invert space-y-2"
+    data-markdoc-target="container">
+    <%= raw message.content %>
   </div>
 
   <div class="flex space-x-2">
     <% if message.assistant? %>
-      <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+      <button class="btn">
         create doc
       </button>
-      <button class="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+      <button class="btn">
         OTHER action?
       </button>
     <% end %>

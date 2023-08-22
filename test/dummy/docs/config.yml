@@ -1,4 +1,4 @@
-name: "Rauversion docs"
+name: "Plain docs"
 logo: "logo.png"
 chat_envs: 
   - "development"
@@ -6,19 +6,19 @@ chat_envs:
 links:
   -
     name: "Start us on github"
-    url: "https://github.com/rauversion/rauversion-ror"
+    url: "https://github.com/chaskiq/chaskiq"
   - 
-    name: "Twitter / X"
-    url: "https://twitter.com/rauversion"
+    name: "Twitter"
+    url: "https://twitter.com/chaskiq"
 footer:
-  legend: "Rauversion © Copyright 2023 . All rights reserved."
+  legend: "Plain © Copyright 2023 . All rights reserved."
   links:
     - 
-      name: "Twitter / X"
-      url: "https://twitter.com/rauversion"
+      name: "Twitter"
+      url: "https://twitter.com/chaskiq"
     - 
       name: "IG"
-      url: "https://instagram.com/rauversion"
+      url: "https://instagram.com/chaskiq"
 sections:
   - 
     name: "getting_started"
@@ -35,5 +35,5 @@ sections:
     items:
       - 
         name: "github Repo"
-        path: "https://github.com/rauversion/rauversion-ror"
+        path: "https://github.com/chaskiq/chaskiq-ror"
         description: "hello there"

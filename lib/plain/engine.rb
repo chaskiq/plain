@@ -1,7 +1,7 @@
 require "openai"
 require "qdrant"
 require "langchainrb"
-require "coderay"
+# require "coderay"
 require "redcarpet"
 
 module Plain
