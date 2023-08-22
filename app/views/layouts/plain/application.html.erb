@@ -9,12 +9,17 @@
   <!-- actual rails host app -->
   <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/dark.min.css">
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
   <script type="module">
-    // import railsActioncable from 'https://cdn.skypack.dev/@rails/actioncable';
-    // import railsActioncable from 'https://cdn.skypack.dev/@rails/actioncable'
+    import Markdoc from "https://cdn.skypack.dev/@markdoc/markdoc";
+    window.Markdoc = Markdoc
+  </script>
+
+  <script type="module">
     import {Turbo} from 'https://jspm.dev/@hotwired/turbo-rails';
-    //Turbo.session.drive = false
     window.Turbo = Turbo
   </script>
 
@@ -39,6 +44,47 @@
         this.element.classList.toggle('hidden');
       }
     })
+
+    Stimulus.register("markdoc", class extends Controller {
+      static values = {
+        content: String
+      }
+
+      static targets = ["container"]
+
+      connect(){
+        console.log("content", this.contentValue)
+        this.renderMarkdoc()
+      }
+
+      contentValueChanged() {
+        this.renderMarkdoc()
+      }
+
+      renderMarkdoc(){
+        const ast = Markdoc.parse(this.contentValue)
+        console.log(ast)
+        const content = Markdoc.transform(ast, /* config */);
+        const html = Markdoc.renderers.html(content)
+        console.log(html)
+
+        this.containerTarget.innerHTML = html
+
+        this.containerTarget.querySelectorAll('pre').forEach((el) => {
+          hljs.highlightElement(el);
+        });
+        // console.log(`${Markdoc.renderers.html(content)}`)
+      }
+    })
+
+    Stimulus.register("highlight", class extends Controller {
+      connect(){
+        this.element.querySelectorAll('pre').forEach((el) => {
+          hljs.highlightElement(el);
+        });
+      }
+    })
+
   </script>
   
 

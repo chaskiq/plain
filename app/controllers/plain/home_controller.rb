@@ -4,7 +4,7 @@ module Plain
     def index
       @conversations = Plain::Conversation
       .order(pinned_at: :asc, created_at: :desc)
-      .limit(4)
+      .limit(12)
     end
   end
 end

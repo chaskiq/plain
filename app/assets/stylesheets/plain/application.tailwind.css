@@ -4,9 +4,4 @@
 
 
 
-@layer components {
-  .prose pre {
-    @apply bg-gray-100 text-white p-4 rounded-md;
-    /* customize this as per your requirements */
-  }
-}
+@layer components {}

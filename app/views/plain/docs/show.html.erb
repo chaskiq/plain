@@ -111,7 +111,7 @@
 
   <div class="relative px-4 pt-14 sm:px-6 lg:px-8">
     <main class="py-16">
-      <article class="prose dark:prose-invert">
+      <article class="prose dark:prose-invert" data-controller="highlight">
         <%= @content.html_safe unless @content.nil? %>
       </article>
     </main>

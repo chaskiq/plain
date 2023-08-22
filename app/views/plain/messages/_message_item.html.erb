@@ -1,13 +1,16 @@
 <div id="message-item-<%= message.id %>" 
+  <% if message.assistant? %>
+    data-controller="markdoc"
+  <% end %>
+  data-markdoc-content-value="<%= message.content %>"
   class="message-role <%= message.assistant? ? "bg-white" : "bg-brand-200" %> 
   mx-4 flex flex-col pb-1 p-2 my-1 shadow-sm rounded-md border border-black/10">
 
   <%= "Plain bot:" if message.assistant? %>
 
-  <div class="prose prose-sm space-y-2">
-    <% unless message.content.nil? %>
-      <%= raw Plain::AiDocs.convert_markdown message.content %>
-    <% end %>
+  <div class="prose prose-sm space-y-2"
+    data-markdoc-target="container">
+    <%= raw message.content %>
   </div>
 
   <div class="flex space-x-2">
