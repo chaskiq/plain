@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "plain" do %>
   <%= render "modal" do %>
     <%= turbo_stream_from(@conversation) %>
-    <div class="h-[calc(100vh-132px)] overflow-y-scroll">
+    <div class="h-[calc(100vh-117px)] overflow-y-scroll">
       <%= turbo_frame_tag "message-list-0", loading: :lazy,
                           src: plain.conversation_messages_path(@conversation, page: 0),
                           class: 'empty:block group' %>

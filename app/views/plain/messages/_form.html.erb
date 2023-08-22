@@ -8,15 +8,19 @@
         action: "turbo:submit-start->loader#formSubmitting turbo:submit-end->loader#formSubmitted"
       }
     } do |form| %>
-    <div class="absolute bottom-0 border-t pt-2 bg-white h-[52px]">
+    <div class="absolute bottom-0 border-t pt-2 bg-white h-[52px]
+    bg-white/70 backdrop-blur shadow-[0_-1px_rgba(229,231,235,.53),0_5px_20px_-5px_rgba(0,0,0,.24)]
+    ">
       <div class="flex space-x-2 w-[448px] px-2">
         <%= form.text_field :content, 
           label: false,
-          class: "flex-grow p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6"  
+          placeholder: "Write your prompt",
+          class: "rounded-md flex-1 sm:text-sm text-base bg-zinc-200/50 border border-zinc-200/80 resize-none scroll-m-2 h-[36px] transition-colors focus:border-zinc-400 focus:ring-0 focus:outline-none"
           %>
         
         <div class="">
-          <%= form.submit "Ask Plain", "data-loader-target": "loader", class: "ml-4 inline-flex justify-center rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" %>
+          <%= form.submit "Ask Plain", "data-loader-target": "loader", 
+          class: "btn-dark" %>
         </div>
 
       </div>

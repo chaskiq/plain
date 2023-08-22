@@ -1,0 +1,3 @@
+<%= turbo_stream.update "conversation-#{@conversation.id}-status" do %>
+  <%= render "plain/conversations/status", conversation: @conversation %>
+<% end %>

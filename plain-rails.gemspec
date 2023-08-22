@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ruby-openai", "~> 4.2"
   spec.add_dependency "qdrant-ruby", "~> 0.9.2"
   # spec.add_dependency "coderay", "~> 1.1"
-  # spec.add_dependency "redcarpet", "~> 2.3.0"
+  spec.add_dependency "redcarpet", "~> 2.3.0"
   spec.add_dependency "front_matter_parser", "~> 1.0.1"
   # spec.add_dependency "tailwindcss-rails"
 end
