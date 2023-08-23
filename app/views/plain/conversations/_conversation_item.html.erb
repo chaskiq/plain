@@ -10,13 +10,15 @@
       <% end %>
     </div>
 
-    <%= link_to conversation_path(conversation),
-      class: "rounded-full p-1 hover:border dark:border-gray-600",
-      "data-turbo-method": "delete", 
-      "data-turbo-confirm": "sure?" do %>
-      <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
+    <% if !Rails.env.production? %>
+      <%= link_to conversation_path(conversation),
+        class: "rounded-full p-1 hover:border dark:border-gray-600",
+        "data-turbo-method": "delete", 
+        "data-turbo-confirm": "sure?" do %>
+        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      <% end %>
     <% end %>
   </div>
   <p class="text-xs text-gray-400">
