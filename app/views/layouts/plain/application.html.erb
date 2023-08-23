@@ -5,7 +5,15 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
+
+    <% if params[:static].present? %>
+      <style>
+        <%= Rails.application.assets.find_asset('plain.css').to_s %>
+      </style>
+    <% else %>
+      <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
+    <% end %>
+
     <!-- actual rails host app -->
     <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 

@@ -13,6 +13,21 @@ class Plain::DocsService
     }
   end
 
+  # used in the compile rake task
+  def self.get_all_files(structure)
+    files = []
+  
+    structure[:children].each do |child|
+      if child[:type] == 'file'
+        files << child
+      elsif child[:type] == 'directory'
+        files.concat(get_all_files(child))
+      end
+    end
+  
+    files
+  end
+
   def self.parse_section_items
     config = self.config
     main_sections = config['sections']
