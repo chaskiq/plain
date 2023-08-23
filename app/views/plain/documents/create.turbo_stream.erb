@@ -1,0 +1,15 @@
+<%= turbo_stream.update "action-form-#{@message.id}" do %>
+  <% if @document.errors.any? %>
+    <%= render "form", document: @document, message: @message %>
+  <% else %>
+    <div class="sm:col-span-3 my-2">
+      <div class="bg-green-600 text-white p-2 rounded-md text-xs">
+        Document successfully created
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "docs-menu" do %>
+  <%= render partial: 'plain/docs/menu', locals: { nodes: @docs_structure[:children], level: 1 } %>
+<% end %>

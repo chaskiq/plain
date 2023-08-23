@@ -44,17 +44,15 @@ module Plain
       @conversation = Plain::Conversation.find(params[:id])
     end
 
+    def destroy
+      @conversation = Plain::Conversation.find(params[:id])
+      @conversation.destroy
+    end
+
     def pin
       @conversation = Plain::Conversation.find(params[:id])
       new_state = !@conversation.pinned?
       @conversation.update(pinned: new_state, pinned_at: new_state ? Time.zone.now : nil )
-    end
-
-    def destroy
-      Plain::Conversation.find(params[:id]).destroy
-
-      @conversation = Plain::Conversation.create
-      render "index"
     end
 
   end

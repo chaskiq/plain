@@ -2,24 +2,39 @@ module Plain
   class DocsController < ApplicationController
 
     def show
-      #@docs_structure = directory_hash(Rails.root.join('docs'))
-      #render_markdown(params[:file_path])
-      @docs_structure = DocsService.get_structure
-      @config = DocsService.config
-  
-      if params[:file_path].blank?
-        @content = nil
-        @main_config = DocsService.parse_section_items
-        render "show" and return
-      end
-  
-      if params[:file_path].ends_with?('/')
-        @content = DocsService.get_content("#{params[:file_path]}README")
+      get_docs
+    end
+
+    def edit
+      get_docs
+      @action = "edit"
+      @markdown = DocsService.get_markdown(@file_path)
+      @document = Plain::Document.new
+      @document.title = @markdown.front_matter["title"]
+      @document.menu_position = @markdown.front_matter["menu_position"]
+      @document.content = @markdown.content
+      @document.path = @file_path
+    end
+
+    def update
+      get_docs
+      @action = "edit"
+      doc_params = params.require(:document).permit(:path, :content, :menu_position, :title)
+
+      @markdown = DocsService.get_markdown(@file_path)
+      @document = Plain::Document.new
+      @document.title = doc_params["title"]
+      @document.menu_position = doc_params["menu_position"]
+      @document.content = doc_params["content"]
+      @document.path = doc_params["path"]
+      @document.current_path = @file_path
+
+      puts @document.valid?
+      if @document.save
+        redirect_to docs_path(@file_path)
       else
-        @content = DocsService.get_content(params[:file_path])
+        render "edit"
       end
-  
-      @file = find_file(@docs_structure, params[:file_path])
     end
   
     private
@@ -34,6 +49,26 @@ module Plain
         end
       end
       nil
+    end
+
+    def get_docs
+      @docs_structure = DocsService.get_structure
+      @config = DocsService.config
+  
+      if params[:file_path].blank?
+        @content = nil
+        @main_config = DocsService.parse_section_items
+        render "show" and return
+      end
+  
+      if params[:file_path].ends_with?('/')
+        @file_path = "#{params[:file_path]}README"
+      else
+        @file_path = "#{params[:file_path]}"
+      end
+
+      @content = DocsService.get_content(@file_path)
+      @file = find_file(@docs_structure, @file_path)
     end
   
     def render_markdown(file_path)

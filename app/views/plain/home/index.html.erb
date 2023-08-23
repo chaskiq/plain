@@ -5,7 +5,7 @@
         Continue conversations
       </h2>
 
-      <div class="grid grid-cols-1 divide-y dark:divide-zinc-700">
+      <div class="grid grid-cols-1 divide-y dark:divide-zinc-700 max-h-[57vh] overflow-auto">
         <%= render partial: "plain/conversations/conversation_item", collection: @conversations, as: :conversation  %>
       </div>
       <div class="flex justify-between px-3 py-2 text-xs font-medium border-t dark:border-zinc-700 rounded-b-lg bg-zinc-100/75 dark:bg-zinc-900/75">

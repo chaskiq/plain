@@ -1,0 +1,41 @@
+
+<%= form_for @document, url: update_doc_path(@file_path), method: :put do |f| %>
+  <div class="flex space-x-2 dark:bg-zinc-800 p-10 rounded-lg ">
+
+    <% #= @document.errors.full_messages %>
+    <div class="w-2/3">
+      <%= f.text_area :content, "data-controller": "markdown-editor"%>
+    </div>
+
+    <div>
+
+      <div class="sm:col-span-3">
+        <%= f.label :title, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+        <div class="mt-2">
+          <%= f.text_field :title, class: "bg-white dark:bg-transparent block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= f.label :menu_position, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+        <div class="mt-2">
+          <%= f.number_field :menu_position, class: "bg-white dark:bg-transparent block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+      
+      <div class="sm:col-span-4">
+        <%= f.label :path, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+        <div class="mt-2">
+          <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+            <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">/docs/</span>
+            <%= f.text_field :path, class: "block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6", placeholder: "janesmith" %>
+          </div>
+        </div>
+      </div>
+      
+      <%= f.submit class: "btn-dark my-2" %>
+
+    </div>
+
+  </div>
+<% end %>

@@ -50,9 +50,14 @@ class Plain::DocsService
     # Sort by position and return children
     all_sections.sort_by { |section| section[:position] }
   end
+
+  def self.get_markdown(file_path)
+    parsed = FrontMatterParser::Parser.parse_file(Rails.root.join('docs', "#{file_path}.md"))
+    parsed
+  end
   
   def self.get_content(file_path)
-    parsed = FrontMatterParser::Parser.parse_file(Rails.root.join('docs', "#{file_path}.md"))
+    parsed = self.get_markdown(file_path)
    
     # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     # markdown.render(parsed.content).html_safe
@@ -103,8 +108,6 @@ class Plain::DocsService
     end
   end
   
-  
-
   def self.assign_position_from_config(parent, path)
     config = YAML.load_file(path)
     parent[:position] = config&.fetch('position', DEFAULT_POSITION)

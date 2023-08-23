@@ -1,114 +1,127 @@
 <!DOCTYPE html>
 <html data-controller="dark-mode">
-<head>
-  <title>Plain</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <head>
+    <title>Plain</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
-  <!-- actual rails host app -->
-  <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "plain", "data-turbo-track": "reload" %>
+    <!-- actual rails host app -->
+    <% #= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/dark.min.css">
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/dark.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
-  <script type="module">
-    import Markdoc from "https://cdn.skypack.dev/@markdoc/markdoc";
-    window.Markdoc = Markdoc
-  </script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
 
-  <script type="module">
-    import {Turbo} from 'https://jspm.dev/@hotwired/turbo-rails';
-    window.Turbo = Turbo
-  </script>
+    <script type="module">
+      import Markdoc from "https://cdn.skypack.dev/@markdoc/markdoc";
+      window.Markdoc = Markdoc
+    </script>
 
-  <script type="module">
-    import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
-    window.Stimulus = Application.start()
+    <script type="module">
+      import {Turbo} from 'https://jspm.dev/@hotwired/turbo-rails';
+      window.Turbo = Turbo
+    </script>
 
-    Stimulus.debug = true
-    Stimulus.register("scroll-to", class extends Controller {
-      // static targets = [ "scroll" ]
-      connect() {
-         this.element.scrollIntoView()
-      }
-    })
+    <script type="module">
+      import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+      window.Stimulus = Application.start()
 
-    Stimulus.register("toggle-class", class extends Controller {
-      toggle(event) {
-        // Toggle 'active' class on button
-        event.currentTarget.classList.toggle('active');
-        
-        // Toggle 'hidden' class on controller's root element
-        this.element.classList.toggle('hidden');
-      }
-    })
-
-    Stimulus.register("markdoc", class extends Controller {
-      static values = {
-        content: String
-      }
-
-      static targets = ["container"]
-
-      connect(){
-        console.log("content", this.contentValue)
-        this.renderMarkdoc()
-      }
-
-      contentValueChanged() {
-        this.renderMarkdoc()
-      }
-
-      renderMarkdoc(){
-        const ast = Markdoc.parse(this.contentValue)
-        console.log(ast)
-        const content = Markdoc.transform(ast, /* config */);
-        const html = Markdoc.renderers.html(content)
-        console.log(html)
-
-        this.containerTarget.innerHTML = html
-
-        this.containerTarget.querySelectorAll('pre').forEach((el) => {
-          hljs.highlightElement(el);
-        });
-        // console.log(`${Markdoc.renderers.html(content)}`)
-      }
-    })
-
-    Stimulus.register("highlight", class extends Controller {
-      connect(){
-        this.element.querySelectorAll('pre').forEach((el) => {
-          hljs.highlightElement(el);
-        });
-      }
-    })
-
-    Stimulus.register("dark-mode", class extends Controller {
-      initialize() {
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-          this.element.classList.add('dark');
+      Stimulus.debug = true
+      Stimulus.register("scroll-to", class extends Controller {
+        // static targets = [ "scroll" ]
+        connect() {
+          this.element.scrollIntoView()
         }
-      }
+      })
 
-      toggleDarkMode(e) {
-        e.preventDefault()
-        if (this.element.classList.toggle('dark')) {
-          localStorage.setItem('dark-mode', 'enabled');
-        } else {
-          localStorage.setItem('dark-mode', 'disabled');
+      Stimulus.register("toggle-class", class extends Controller {
+        toggle(event) {
+          // Toggle 'active' class on button
+          event.currentTarget.classList.toggle('active');
+          
+          // Toggle 'hidden' class on controller's root element
+          this.element.classList.toggle('hidden');
         }
-      }
-    });
+      })
 
-  </script>
-  
+      Stimulus.register("markdoc", class extends Controller {
+        static values = {
+          content: String
+        }
 
-</head>
-<body class="antialiased text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-900">
+        static targets = ["container"]
 
-  <%= yield %>
+        connect(){
+          console.log("content", this.contentValue)
+          this.renderMarkdoc()
+        }
 
-</body>
+        contentValueChanged() {
+          this.renderMarkdoc()
+        }
+
+        renderMarkdoc(){
+          const ast = Markdoc.parse(this.contentValue)
+          console.log(ast)
+          const content = Markdoc.transform(ast, /* config */);
+          const html = Markdoc.renderers.html(content)
+          console.log(html)
+
+          this.containerTarget.innerHTML = html
+
+          this.containerTarget.querySelectorAll('pre').forEach((el) => {
+            hljs.highlightElement(el);
+          });
+          // console.log(`${Markdoc.renderers.html(content)}`)
+        }
+      })
+
+      Stimulus.register("highlight", class extends Controller {
+        connect(){
+          this.element.querySelectorAll('pre').forEach((el) => {
+            hljs.highlightElement(el);
+          });
+        }
+      })
+
+      Stimulus.register("dark-mode", class extends Controller {
+        initialize() {
+          if (localStorage.getItem('dark-mode') === 'enabled') {
+            this.element.classList.add('dark');
+          }
+        }
+
+        toggleDarkMode(e) {
+          e.preventDefault()
+          if (this.element.classList.toggle('dark')) {
+            localStorage.setItem('dark-mode', 'enabled');
+          } else {
+            localStorage.setItem('dark-mode', 'disabled');
+          }
+        }
+      });
+
+      Stimulus.register("markdown-editor", class extends Controller {
+        initialize() {
+          this.editor = new EasyMDE({element: this.element });
+        }
+
+        disconnect(){
+          this.editor && this.editor.cleanup()
+        }
+      });
+    </script>
+    
+  </head>
+
+  <body class="antialiased text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-900">
+    <%= yield %>
+  </body>
 </html>
