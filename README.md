@@ -2,6 +2,8 @@
 
 [![Rails Test](https://github.com/chaskiq/plain/actions/workflows/ci.yml/badge.svg)](https://github.com/chaskiq/plain/actions/workflows/ci.yml)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/489eff432bbd7b113ef7/maintainability)](https://codeclimate.com/github/chaskiq/plain/maintainability)
+
 ---
 ## What is this Ruby on Plan rails engine
 
