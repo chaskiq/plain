@@ -87,9 +87,10 @@ module Plain
       # Distinguishing files from directories
       files_without_extension, directories = Plain.configuration.paths.partition { |path| File.file?(path) }
 
+    
       # Getting files from directories based on the allowed extensions
       files_with_extension = directories.flat_map do |dir|
-        Dir[File.join(dir, "*.{#{Plain.configuration.extensions.join(',')}}")]
+        Dir[File.join("#{dir}/*/**", "*.{#{Plain.configuration.extensions.join(',')}}")]
       end
 
       puts "FILES WITH EXTENSIONS"

@@ -1,6 +1,7 @@
 module Plain
   class Configuration
-    attr_accessor :paths, :chat_environments, :vector_search, :extensions
+    attr_accessor :paths, :chat_environments, 
+    :vector_search, :extensions
 
     def initialize
       @paths = []

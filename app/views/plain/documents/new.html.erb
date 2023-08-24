@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "action-form-#{@message.id}" do %>
+  <%= render "form", document: @document, message: @message %>
+<% end %>

@@ -13,6 +13,21 @@ class Plain::DocsService
     }
   end
 
+  # used in the compile rake task
+  def self.get_all_files(structure)
+    files = []
+  
+    structure[:children].each do |child|
+      if child[:type] == 'file'
+        files << child
+      elsif child[:type] == 'directory'
+        files.concat(get_all_files(child))
+      end
+    end
+  
+    files
+  end
+
   def self.parse_section_items
     config = self.config
     main_sections = config['sections']
@@ -50,9 +65,14 @@ class Plain::DocsService
     # Sort by position and return children
     all_sections.sort_by { |section| section[:position] }
   end
+
+  def self.get_markdown(file_path)
+    parsed = FrontMatterParser::Parser.parse_file(Rails.root.join('docs', "#{file_path}.md"))
+    parsed
+  end
   
   def self.get_content(file_path)
-    parsed = FrontMatterParser::Parser.parse_file(Rails.root.join('docs', "#{file_path}.md"))
+    parsed = self.get_markdown(file_path)
    
     # markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     # markdown.render(parsed.content).html_safe
@@ -103,8 +123,6 @@ class Plain::DocsService
     end
   end
   
-  
-
   def self.assign_position_from_config(parent, path)
     config = YAML.load_file(path)
     parent[:position] = config&.fetch('position', DEFAULT_POSITION)

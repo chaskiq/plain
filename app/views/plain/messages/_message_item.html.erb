@@ -31,14 +31,15 @@
     <%= raw message.content %>
   </div>
 
+  <%= turbo_frame_tag "action-form-#{message.id}" do %>
+    
+  <% end %>
+
   <div class="flex space-x-2">
     <% if message.assistant? %>
-      <button class="btn">
-        create doc
-      </button>
-      <button class="btn">
-        OTHER action?
-      </button>
+      <%= link_to "Convert to doc", 
+      plain.new_conversation_message_document_path(message.conversation, message), 
+      class: "btn", "data-turbo-frame": "action-form-#{message.id}" %>
     <% end %>
   </div>
   <% if local_assigns[:scroll] %>

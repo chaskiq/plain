@@ -1,10 +1,14 @@
 Plain.configure do |config|
   config.paths = [
-    Rails.root.join("Gemfile"), 
     Rails.root.join("app/models"), 
     Rails.root.join("app/controllers"), 
-    Rails.root.join("spec"),
-    Plain::Engine.root.join("test"),
+    Rails.root.join("docs"), 
+    Plain::Engine.root.join("plain-rails.gemspec"),
+    Plain::Engine.root.join("config/routes.rb"),
+    Plain::Engine.root.join("db"),
+    Plain::Engine.root.join("lib"),
+    Plain::Engine.root.join("test/controllers"),
+    Plain::Engine.root.join("test/models"),
     Plain::Engine.root.join("Gemfile"),
     Plain::Engine.root.join("app"),
     Plain::Engine.root.join("README.md"),

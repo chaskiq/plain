@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "conversation-list-#{@current_page}" do %>
-  <div class="divide divide-y">
+  <div class="divide divide-y dark:divide-zinc-700">
     <%= render partial: "plain/conversations/conversation_item", collection: @conversations, as: :conversation  %>
   </div>
   <% if @conversations.size.positive? %>

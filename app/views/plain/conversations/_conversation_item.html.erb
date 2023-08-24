@@ -1,11 +1,24 @@
-<div class="p-2 rounded-sm hover:bg-black/5">
+<div class="p-2 rounded-sm hover:bg-black/5" id="conversation-<%= conversation.id%>">
 
-  <div class="flex space-x-2">
+  <div class="flex justify-between">
 
-    <%= render "plain/conversations/status", conversation: conversation %>
+    <div class="flex space-x-2 ">
+      <%= render "plain/conversations/status", conversation: conversation %>
 
-    <%= link_to conversation_path(conversation), data: {"turbo-frame": "plain"} do %>
-      <span><%= conversation.subject || "new chat" %> </span>
+      <%= link_to conversation_path(conversation), data: {"turbo-frame": "plain"} do %>
+        <span><%= conversation.subject || "new chat" %> </span>
+      <% end %>
+    </div>
+
+    <% if !Rails.env.production? %>
+      <%= link_to conversation_path(conversation),
+        class: "rounded-full p-1 hover:border dark:border-gray-600",
+        "data-turbo-method": "delete", 
+        "data-turbo-confirm": "sure?" do %>
+        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      <% end %>
     <% end %>
   </div>
   <p class="text-xs text-gray-400">

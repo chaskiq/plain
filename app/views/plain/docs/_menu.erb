@@ -1,13 +1,11 @@
-
 <ul role="list" class="border-l border-transparent">
- 
   <% nodes.each do |node| %>
     <% if node[:type] == 'directory' %>
       <li class="relative">
         <span class="<%= level == 1 ? 'text-xs font-semibold text-zinc-900 dark:text-white' : 'flex justify-between gap-2 py-1 pr-3 text-sm transition pl-4 text-zinc-900 dark:text-white'%>"> 
           <%= node[:name].capitalize.humanize %>
         </span>
-        <%= render partial: 'menu', locals: { nodes: node[:children], level: level + 1 } %>
+        <%= render partial: 'plain/docs/menu', locals: { nodes: node[:children], level: level + 1 } %>
       </li>
     <% else %>
       <li class="relative">
@@ -15,5 +13,4 @@
       </li>
     <% end %>
   <% end %>
-
 </ul>

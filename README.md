@@ -2,6 +2,8 @@
 
 [![Rails Test](https://github.com/chaskiq/plain/actions/workflows/ci.yml/badge.svg)](https://github.com/chaskiq/plain/actions/workflows/ci.yml)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/489eff432bbd7b113ef7/maintainability)](https://codeclimate.com/github/chaskiq/plain/maintainability)
+
 ---
 ## What is this Ruby on Plan rails engine
 
@@ -82,7 +84,7 @@ Plain.configure do |config|
 end
 ```
 
-For the above configuration some environment configuration variables are required:
+For the above configuration some environment configuration variables would be required:
 
 ```bash
 QDRANT_URL = 
@@ -122,6 +124,8 @@ Place your markdowns on a `docs` folder on your project's root. also you can add
 ![Screen Shot 2023-08-17 at 10 54 14 PM](https://github.com/chaskiq/plain/assets/11976/0dee77c6-9cb7-489e-8521-3c870952861c)
 
 
+The documentation site will be served at `localhost:3000/plain/docs` 
+
 ### Documentation side main config
 
 Put this on /docs/config.yml
@@ -159,6 +163,18 @@ sections:
         description: "hello there"
 ```
 
+### Static compilation of documentation site:
+
+If you want to have a static (HTML) version of the documentation site you can run the following command:
+
+```bash
+rails plain:site:compile
+```
+
+This will create a folder on `public/static-plain/docs`
+
+Right now the script will assume that the site is at `plain/docs` so it will hit that endpoint,
+Eventually we will add some options to customize that.
 
 ### Development:
 
